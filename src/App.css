@@ -1,0 +1,19 @@
+.download-table-xls-button {
+  background-color: #1976d2; /* Material-UI primary color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  padding: 8px 16px; /* Add padding */
+  border-radius: 4px; /* Add border-radius for rounded corners */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  box-shadow: none; /* Remove box shadow */
+  font-weight: 600; /* Medium font weight */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.download-table-xls-button:hover {
+  background-color: #1565c0; /* Darker color on hover */
+}
+
+.download-table-xls-button:focus {
+  outline: none; /* Remove focus outline */
+}

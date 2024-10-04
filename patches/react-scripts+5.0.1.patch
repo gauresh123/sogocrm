@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-scripts/config/webpack.config.js b/node_modules/react-scripts/config/webpack.config.js
+index e465d8e..1f6b044 100644
+--- a/node_modules/react-scripts/config/webpack.config.js
++++ b/node_modules/react-scripts/config/webpack.config.js
+@@ -229,7 +229,7 @@ module.exports = function (webpackEnv) {
+       // webpack uses `publicPath` to determine where the app is being served from.
+       // It requires a trailing slash, or the file assets will get an incorrect path.
+       // We inferred the "public path" (such as / or /my-project) from homepage.
+-      publicPath: paths.publicUrlOrPath,
++      publicPath: '/',
+       // Point sourcemap entries to original disk location (format as URL on Windows)
+       devtoolModuleFilenameTemplate: isEnvProduction
+         ? info =>
+@@ -239,6 +239,9 @@ module.exports = function (webpackEnv) {
+         : isEnvDevelopment &&
+           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
+     },
++    devServer: {
++      historyApiFallback: true,
++    },  
+     cache: {
+       type: 'filesystem',
+       version: createEnvironmentHash(env.raw),

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sogo-crm
+spec:
+  selector:
+    matchLabels:
+      app: sogo-crm
+  template:
+    metadata:
+      labels:
+        app: sogo-crm
+    spec:
+      containers:
+        - name: sogo-crm
+          image: registry.digitalocean.com/sogoprodacr/sogo-crm-image:2.3.6
+          resources:
+            limits:
+              memory: '128Mi'
+              cpu: '500m'
+          ports:
+            - containerPort: 80
+          env:
+            - name: REACT_APP_SOGO_API
+              value: 'https://api.gosol.ink/api'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sogo-crm-service
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-protocol: 'http'
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: '9682bbed-3057-46e1-96a1-0c68dee38fdd'
+spec:
+  loadBalancerIP: 20.157.24.81
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+    - port: 443
+      name: https-port
+      protocol: TCP
+      targetPort: 80
+    # - port: 80
+    #   name: http-port
+    #   protocol: TCP
+    #   targetPort: 80
+  selector:
+    app: sogo-crm
